@@ -1003,6 +1003,11 @@ export default function installCustomElements(window, polyfill) {'use strict';
               )
                 fragment.appendChild(document.importNode(childNodes[i], !!deep));
               return fragment;
+            case 3:
+              // Handle Text nodes
+              var fragment = document.createDocumentFragment();
+              fragment.textContent = node.wholeText;
+              return fragment;
             default:
               return cloneNode.call(node, !!deep);
           }
